@@ -1,0 +1,10 @@
+.head_base {
+    padding-top: 100px;
+}
+
+.text_base {
+    color: #2b2b2b;
+    text-align: center;
+    font-size: 1.4em;
+    font-family: 'Titillium Web', sans-serif;
+}
