@@ -1,41 +1,52 @@
 package org.peano.orario.rest;
 
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import java.util.concurrent.ExecutionException;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
-import org.optaplanner.core.api.solver.SolverJob;
-import org.optaplanner.core.api.solver.SolverManager;
-import org.peano.orario.domain.TimeTable;
+import org.peano.orario.domain.Lesson;
 
 @Path("/orario")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TimeTableResource {
 
-    @Inject
-    SolverManager<TimeTable, UUID> solverManager;
-
-    @POST
-    @Path("/solve")
-    public TimeTable solve(TimeTable problem) {
-        UUID problemId = UUID.randomUUID();
-        // Submit the problem to start solving
-        SolverJob<TimeTable, UUID> solverJob = solverManager.solve(problemId, problem);
-        TimeTable solution;
-        try {
-            // Wait until the solving ends
-            solution = solverJob.getFinalBestSolution();
-        } catch (InterruptedException | ExecutionException e) {
-            throw new IllegalStateException("Solving failed.", e);
+    @GET
+    @Path("/{id}")
+    public List<Lesson> get(@PathParam("id") String id, @QueryParam("t") String teacher, @QueryParam("r") String room) {
+        if((teacher != null) && (teacher.length() > 0)){
+            return Lesson.findByTeacher(id, teacher);
         }
-        return solution;
+        if((room != null) && (room.length() > 0)){
+            return Lesson.findByRoom(id, room);
+        }
+        return Lesson.findByTimetable(id);
+    }
+
+    @GET
+    @Path("/check/{id}")
+    public Response check(@PathParam("id") String id) {
+        if(Lesson.findByTimetable(id).size() > 0){
+            return Response.ResponseBuilder.
+        }
+        return Lesson.findByTimetable(id);
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public void purge(@PathParam("id") String id) {
+        Lesson.deleteTimetable(id);
     }
 
 }

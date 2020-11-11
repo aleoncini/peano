@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+
+    <title>Orario Scolastico</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- Application CSS -->
+    <link href="css/orario.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+      
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Orario Scolastico</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container head_base">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p><img src="img/orario.png"></p>
+
+        <div class="alert alert-success" role="alert" id="wait_for_solution">
+          Sembra che l'orario che hai richiesto non sia ancora disponibile
+
+        <div class="row">
+          <div class="col">
+            <select class="form-control" id="sel_teacher">
+            </select>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Last name">
+          </div>
+        </div>
+
+        <div style="margin-bottom: .5rem">
+            <div class="float-right">
+                <ul class="nav nav-pills" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="byRoomTab" data-toggle="tab" href="#byRoomPanel" role="tab" aria-controls="byRoomPanel" aria-selected="true">Per Classe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="byTeacherTab" data-toggle="tab" href="#byTeacher" role="tab" aria-controls="byTeacher" aria-selected="false">Per Professore</a>
+                    </li>
+                </ul>
+            </div>
+        </div>    
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="byRoomPanel" role="tabpanel" aria-labelledby="byRoomTab">
+                <table class="table table-borderless table-striped timeTableSolution" id="timeTableByRoom">
+                    <!-- Filled in by app.js -->
+                </table>
+            </div>
+            <div class="tab-pane fade" id="byTeacher" role="tabpanel" aria-labelledby="byTeacherTab">
+                <table class="table table-borderless table-striped timeTableSolution" id="timeTableByTeacher">
+                    <!-- Filled in by app.js -->
+                </table>
+            </div>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="js/jquery.slim.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <!-- app local JavaScript
+  ================================================== -->
+  <script src="js/moment.min.js"></script>
+  <script src="js/orario.js"></script>
+
+    <script>
+        $(document).ready( function() {
+          initPage();
+        });
+    </script>
+</body>
+</html>

@@ -12,6 +12,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/orario.css" rel="stylesheet">
 
 </head>
 
@@ -45,21 +46,57 @@
     </div>
   </nav>
 
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <p class="lead"><img src="img/orario.png">
-          <br>Difficile accontentare tutti?
-          <br>Ora non piu'! almeno per quanto riguarda l'oario delle lezioni scolastiche.
-        </p>
-        <button id="btn_start" type="submit" class="btn btn-primary">Comincia</button>
+    <!-- Page Content -->
+    <div class="container head_base">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <p><img src="img/orario.png"></p>
+          <!-- STEP 0 -->
+          <div id="content_step_0">
+            <p class="text_base">Ti chiediamo solo una informazione che riguarda te, Ovvero il tuo indirizzo di posta elettronica</p>
+            <div class="form-group">
+              <label for="txtCode">La tua email per favore</label>
+              <input type="text" class="form-control" id="txt_email" aria-describedby="emailHelp">
+              <small id="emailHelp" class="form-text text-muted">L'email verrà usata per riconoscerti la prossima volta che userai l'applicazione</small>
+            </div>      
+            <br>
+            <button id="step_0_next_btn" type="submit" class="btn btn-primary">Avanti</button>
+          </div>
+          <!-- STEP 1 -->
+          <div id="content_step_1" style="display:none">
+            <p class="text_base">Ora un po' di dati sulla scuola, prima di tutto chiamiamola per nome</p>
+            <div class="form-group">
+              <label for="txtCode">Dai un nome alla tua scuola</label>
+              <input type="text" class="form-control" id="txt_name" aria-describedby="schoolHelp">
+              <small id="schoolHelp" class="form-text text-muted">Per esempio: Liceo Scientifico Giuseppe Peano</small>
+            </div>      
+            <br>
+            <div style="text-align: center;">
+              <button id="step_1_prev_btn" type="submit" class="btn btn-primary">&laquo; Indietro</button>
+              <button id="step_1_next_btn" type="submit" class="btn btn-primary">Avanti &raquo;</button>
+            </div>
+          </div>
+          <!-- STEP 2 -->
+          <div id="content_step_2" style="display:none">
+            <div class="form-group">
+              <label for="txtCode">Di quante aule per studenti dispone ci sono nella scuola?</label>
+              <input type="text" class="form-control" id="txt_rooms" aria-describedby="roomlHelp">
+              <small id="roomHelp" class="form-text text-muted">inserisci un numero intero</small>
+            </div>      
+            <br>
+            <div style="text-align: center;">
+              <button id="step_2_prev_btn" type="submit" class="btn btn-primary">&laquo; Indietro</button>
+              <button id="step_2_next_btn" type="submit" class="btn btn-primary">Avanti &raquo;</button>
+            </div>
+          </div>
+          <!-- END of Contents -->
+        </div>
       </div>
     </div>
-  </div>
+  
 
   <!-- Bootstrap core JavaScript -->
-  <script src="js/jquery.slim.min.js"></script>
+  <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
 
   <!-- app local JavaScript
@@ -69,8 +106,21 @@
   <script>
 
     $(document).ready(function(){
-      $("#btn_start").click(function(){
-        start();
+      checkStep();
+      $("#step_0_next_btn").click(function(){
+        moveStep(0, 1);
+      });
+      $("#step_1_prev_btn").click(function(){
+        moveStep(1, 0);
+      });
+      $("#step_1_next_btn").click(function(){
+        moveStep(1, 2);
+      });
+      $("#step_2_prev_btn").click(function(){
+        moveStep(2, 1);
+      });
+      $("#step_2_next_btn").click(function(){
+        saveSchool($('#txt_email').val(), $('#txt_name').val(), Number($('#txt_rooms').val()));
       });
     });
 

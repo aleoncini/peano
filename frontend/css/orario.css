@@ -8,3 +8,30 @@
     font-size: 1.4em;
     font-family: 'Titillium Web', sans-serif;
 }
+
+.t_table thead {
+    background-color: #b45f06;
+    color: whitesmoke;
+    text-align: left;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.t_table tbody {
+    color: #102e3b;
+    text-align: left;
+    font-size: 0.8em;
+    font-weight: normal;
+}
+
+.t_table th {
+    padding-left: 50px;
+}
+
+.t_table td.nm {
+    padding-left: 20px;
+}
+
+.t_table td.subj {
+    font-style: italic;
+}

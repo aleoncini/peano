@@ -22,6 +22,8 @@ public class TimeTable {
     @PlanningEntityCollectionProperty
     private List<Lesson> lessonList;
 
+    public String schoolId;
+
     @PlanningScore
     private HardSoftScore score;
 
@@ -59,6 +61,11 @@ public class TimeTable {
 
     public void setSolverStatus(SolverStatus solverStatus) {
         this.solverStatus = solverStatus;
+    }
+
+    public TimeTable setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
+        return this;
     }
 
 }

@@ -10,7 +10,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
 
 import org.bson.types.ObjectId;
 import org.peano.orario.domain.Teacher;
@@ -32,9 +31,9 @@ public class TeacherResource {
     }
 
     @POST
-    public Response create(Teacher teacher) {
+    public Teacher create(Teacher teacher) {
         teacher.persist();
-        return Response.status(201).build();
+        return teacher;
     }
 
     @PUT
@@ -54,6 +53,12 @@ public class TeacherResource {
     @Path("/search/{name}")
     public Teacher search(@PathParam("name") String name) {
         return Teacher.findByName(name);
+    }
+
+    @GET
+    @Path("/school/{schoolId}")
+    public List<Teacher> searchBySchool(@PathParam("schoolId") String schoolId) {
+        return Teacher.findBySchool(schoolId);
     }
 
     @GET

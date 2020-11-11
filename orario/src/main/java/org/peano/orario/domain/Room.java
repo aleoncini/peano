@@ -1,6 +1,8 @@
 package org.peano.orario.domain;
 
-public class Room {
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+
+public class Room extends PanacheMongoEntity {
 
     private String name;
 
@@ -13,6 +15,10 @@ public class Room {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

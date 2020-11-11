@@ -32,7 +32,7 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                         // ... in the same room ...
                         Joiners.equal(Lesson::getRoom),
                         // ... and the pair is unique (different id, no reverse pairs)
-                        Joiners.lessThan(Lesson::getId))
+                        Joiners.lessThan(Lesson::getInstance))
                 // then penalize each pair with a hard weight.
                 .penalize("Room conflict", HardSoftScore.ONE_HARD);
     }

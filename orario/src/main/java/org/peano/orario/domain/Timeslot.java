@@ -3,7 +3,9 @@ package org.peano.orario.domain;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-public class Timeslot {
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+
+public class Timeslot extends PanacheMongoEntity {
 
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
@@ -28,6 +30,18 @@ public class Timeslot {
 
     public LocalTime getEndTime() {
         return endTime;
+    }
+
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
     }
 
     @Override
