@@ -11,4 +11,4 @@ COPY --from=build /home/jboss/target/orario-1.0.0-runner.jar ./
 EXPOSE 8080
 USER 1001
 
-#ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dquarkus.mongodb.mrt.connection-string=${MONGOCONNSTRING}","-jar","./orario-1.0.0-runner.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dquarkus.mongodb.mrt.connection-string=${MONGOCONNSTRING}","-jar","./orario-1.0.0-runner.jar"]
