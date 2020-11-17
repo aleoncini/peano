@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
@@ -49,45 +50,136 @@
   <div class="container head_base">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <p><img src="img/orario.png"></p>
+        <p><img src="img/orario.png" alt="orario logo"></p>
 
-        <div class="alert alert-success" role="alert" id="wait_for_solution">
-          Sembra che l'orario che hai richiesto non sia ancora disponibile
-
-        <div class="row">
-          <div class="col">
-            <select class="form-control" id="sel_teacher">
-            </select>
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Last name">
-          </div>
+        <div class="alert alert-success" role="alert" id="wait_for_solution" style="display:none;">
+          Sembra che l'orario che hai richiesto non sia ancora disponibile.<br>
+          Devi solo aspettare, pensiamo a tutto noi. Considera che per calcolare l'orario ci vogliono circa un paio di minuti.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
 
-        <div style="margin-bottom: .5rem">
-            <div class="float-right">
-                <ul class="nav nav-pills" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="byRoomTab" data-toggle="tab" href="#byRoomPanel" role="tab" aria-controls="byRoomPanel" aria-selected="true">Per Classe</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="byTeacherTab" data-toggle="tab" href="#byTeacher" role="tab" aria-controls="byTeacher" aria-selected="false">Per Professore</a>
-                    </li>
-                </ul>
-            </div>
-        </div>    
+        <div id="selection_container" style="display:none;">
+          <p class="text_base">
+            Ok orario pronto! Ricordati che puoi visualizzarlo per Professore o per Classe.
+          </p>
+          <div style="margin-bottom: .5rem">
+            <button id="viewByProf" type="button" class="btn btn-success">
+              Visualizza per Prof
+            </button>    
+            <button id="viewByClass" type="button" class="btn btn-success">
+              Visualizza per Classe
+            </button>    
+          </div>    
+        </div>
+  
+        <div id="teacher_selection_container" style="display:none;">
+          <select class="form-control teac" id="sel_teacher">
+            <option selected>Seleziona un professore</option>
+            <option>Giovanni Pascoli</option>
+            <option>Rita Levi Montalcini</option>
+          </select>
+        </div>
 
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="byRoomPanel" role="tabpanel" aria-labelledby="byRoomTab">
-                <table class="table table-borderless table-striped timeTableSolution" id="timeTableByRoom">
-                    <!-- Filled in by app.js -->
-                </table>
-            </div>
-            <div class="tab-pane fade" id="byTeacher" role="tabpanel" aria-labelledby="byTeacherTab">
-                <table class="table table-borderless table-striped timeTableSolution" id="timeTableByTeacher">
-                    <!-- Filled in by app.js -->
-                </table>
-            </div>
+        <div id="classroom_selection_container" style="display:none;">
+          <select class="form-control clrm" id="sel_studentGroup">
+            <option selected>Seleziona una classe</option>
+            <option>Classe 1A</option>
+            <option>Classe 2A</option>
+            <option>Classe 3A</option>
+            <option>Classe 4A</option>
+            <option>Classe 5A</option>
+            <option>Classe 1D</option>
+            <option>Classe 2D</option>
+            <option>Classe 3D</option>
+            <option>Classe 4D</option>
+            <option>Classe 5D</option>
+          </select>
+        </div>
+
+        <div id="timetable_container" style="display:none;">
+          <br>
+          <h3 id="tt_title">Prof. Giovanni Pascoli</h3>
+        
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">Lunedi'</th>
+                <th scope="col">Martedi'</th>
+                <th scope="col">Mercoledi'</th>
+                <th scope="col">Giovedi'</th>
+                <th scope="col">Venerdi'</th>
+                <th scope="col">Sabato</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1a Ora</th>
+                <td id="MONDAY_1"></td>
+                <td id="TUESDAY_1"></td>
+                <td id="WEDNESDAY_1"></td>
+                <td id="THURSDAY_1"></td>
+                <td id="FRIDAY_1"></td>
+                <td id="SATURDAY_1"></td>
+              </tr>
+              <tr>
+                <th scope="row">2a Ora</th>
+                <td id="MONDAY_2"></td>
+                <td id="TUESDAY_2"></td>
+                <td id="WEDNESDAY_2"></td>
+                <td id="THURSDAY_2"></td>
+                <td id="FRIDAY_2"></td>
+                <td id="SATURDAY_2"></td>
+              </tr>
+              <tr>
+                <th scope="row">3a Ora</th>
+                <td id="MONDAY_3"></td>
+                <td id="TUESDAY_3"></td>
+                <td id="WEDNESDAY_3"></td>
+                <td id="THURSDAY_3"></td>
+                <td id="FRIDAY_3"></td>
+                <td id="SATURDAY_3"></td>
+              </tr>
+              <tr>
+                <th scope="row">4a Ora</th>
+                <td id="MONDAY_4"></td>
+                <td id="TUESDAY_4"></td>
+                <td id="WEDNESDAY_4"></td>
+                <td id="THURSDAY_4"></td>
+                <td id="FRIDAY_4"></td>
+                <td id="SATURDAY_4"></td>
+              </tr>
+              <tr>
+                <th scope="row">5a Ora</th>
+                <td id="MONDAY_5"></td>
+                <td id="TUESDAY_5"></td>
+                <td id="WEDNESDAY_5"></td>
+                <td id="THURSDAY_5"></td>
+                <td id="FRIDAY_5"></td>
+                <td id="SATURDAY_5"></td>
+              </tr>
+              <tr>
+                <th scope="row">6a Ora</th>
+                <td id="MONDAY_6"></td>
+                <td id="TUESDAY_6"></td>
+                <td id="WEDNESDAY_6"></td>
+                <td id="THURSDAY_6"></td>
+                <td id="FRIDAY_6"></td>
+                <td id="SATURDAY_6"></td>
+              </tr>
+              <tr>
+                <th scope="row">7a Ora</th>
+                <td id="MONDAY_7"></td>
+                <td id="TUESDAY_7"></td>
+                <td id="WEDNESDAY_7"></td>
+                <td id="THURSDAY_7"></td>
+                <td id="FRIDAY_7"></td>
+                <td id="SATURDAY_7"></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
     
       </div>
@@ -95,7 +187,7 @@
   </div>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="js/jquery.slim.min.js"></script>
+  <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
 
   <!-- app local JavaScript
@@ -107,6 +199,20 @@
         $(document).ready( function() {
           initPage();
         });
+        $("#viewByProf").click(function() {
+          $('#selection_container').hide();
+          $('#teacher_selection_container').fadeIn();
+        });
+        $("#viewByClass").click(function() {
+          $('#selection_container').hide();
+          $('#classroom_selection_container').fadeIn();
+        });
+        $( ".teac" ).change(function() {
+          loadLessonsByTeacher($(this).find(":selected").val(), formatTeacherTimetable);
+        });        
+        $( ".clrm" ).change(function() {
+          loadLessonsByStudentGroup($(this).find(":selected").val(), formatClassroomTimetable);
+        });        
     </script>
 </body>
 </html>

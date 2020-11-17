@@ -472,40 +472,40 @@ public class TimeTableBuilder {
 
 	private List<Timeslot> buildTimeSlotList() {
         List<Timeslot> slots = new ArrayList<Timeslot>();
-        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0)));
-        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0)));
-        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0)));
-        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0)));
-        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0)));
-        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0)));
+        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0), 1));
+        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0), 2));
+        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0), 3));
+        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0), 4));
+        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0), 5));
+        slots.add( new Timeslot( DayOfWeek.MONDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0), 6));
 
-        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0)));
-        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0)));
-        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0)));
-        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0)));
-        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0)));
-        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0)));
+        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0), 1));
+        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0), 2));
+        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0), 3));
+        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0), 4));
+        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0), 5));
+        slots.add( new Timeslot( DayOfWeek.TUESDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0), 6));
 
-        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0)));
-        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0)));
-        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0)));
-        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0)));
-        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0)));
-        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0)));
+        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0), 1));
+        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0), 2));
+        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0), 3));
+        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0), 4));
+        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0), 5));
+        slots.add( new Timeslot( DayOfWeek.WEDNESDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0), 6));
 
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0)));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0), 1));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0), 2));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0), 3));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0), 4));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0), 5));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0), 6));
 
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0)));
-        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0)));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(8, 0, 0), LocalTime.of(8, 50, 0), 1));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(8, 55, 0), LocalTime.of(9, 45, 0), 2));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(9, 50, 0), LocalTime.of(10, 40, 0), 3));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(11, 10, 0), LocalTime.of(12, 0, 0), 4));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(12, 5, 0), LocalTime.of(12, 55, 0), 5));
+        slots.add( new Timeslot( DayOfWeek.THURSDAY, LocalTime.of(13, 0, 0), LocalTime.of(13, 50, 0), 6));
         return slots;
 	}
 }

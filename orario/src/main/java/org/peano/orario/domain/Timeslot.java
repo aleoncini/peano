@@ -10,14 +10,16 @@ public class Timeslot extends PanacheMongoEntity {
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
+    private int slot;
 
     public Timeslot() {
     }
 
-    public Timeslot(DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
+    public Timeslot(DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime, int slot) {
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.slot = slot;
     }
 
     public DayOfWeek getDayOfWeek() {
@@ -32,6 +34,10 @@ public class Timeslot extends PanacheMongoEntity {
         return endTime;
     }
 
+    public int getSlot() {
+        return slot;
+    }
+
     public void setDayOfWeek(DayOfWeek dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
@@ -42,6 +48,10 @@ public class Timeslot extends PanacheMongoEntity {
 
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
+    }
+
+    public void setSlot(int slot) {
+        this.slot = slot;
     }
 
     @Override

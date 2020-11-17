@@ -29,7 +29,6 @@ public class EngineResource {
     @GET
     @Path("/{id}")
     public SolverStatus getTimeTable(@PathParam("id") UUID id) {
-        //return jobManager.get(id).getSolverStatus();
         return solverManager.getSolverStatus(id);
     }
     

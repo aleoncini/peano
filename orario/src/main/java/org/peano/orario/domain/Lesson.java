@@ -1,7 +1,6 @@
 package org.peano.orario.domain;
 
 import java.util.List;
-import java.util.Map;
 
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.lookup.PlanningId;
@@ -37,7 +36,7 @@ public class Lesson extends PanacheMongoEntity {
     }
 
     public static List<Lesson> find(){
-        return School.listAll();
+        return listAll();
     }
 
     public static List<Lesson> findByTeacher(String timetableId, String teacher){
@@ -46,6 +45,10 @@ public class Lesson extends PanacheMongoEntity {
 
     public static List<Lesson> findByRoom(String timetableId, String roomName){
         return list("timetableId = ?1 and room.name = ?2", timetableId, roomName);
+    }
+
+    public static List<Lesson> findByStudentGroup(String timetableId, String studentGroup){
+        return list("timetableId = ?1 and studentGroup = ?2", timetableId, studentGroup);
     }
 
     public static List<Lesson> findByTimetable(String timetableId){

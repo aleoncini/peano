@@ -35,3 +35,14 @@
 .t_table td.subj {
     font-style: italic;
 }
+
+.ttt {
+    border: 1px solid #b45f06;
+    border-radius: 15px;
+    background-color: rgb(219, 190, 163);
+    padding: 5px;
+    color: #102e3b;
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: normal;
+}

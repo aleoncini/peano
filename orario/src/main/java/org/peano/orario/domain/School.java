@@ -13,7 +13,7 @@ public class School extends PanacheMongoEntity {
     public String instituteId;
 
     public static List<School> find(){
-        return School.listAll();
+        return listAll();
     }
     public static List<School> findByAdmin(String admin){
         return list("admin", admin);
