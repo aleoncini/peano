@@ -8,6 +8,7 @@ RUN mvn clean package
 # Create final image
 FROM registry.access.redhat.com/ubi8/openjdk-11
 COPY --from=build /home/jboss/target/orario-1.0.0-runner.jar ./
+COPY --from=build /home/jboss/target/lib ./lib
 EXPOSE 8080
 USER 1001
 
