@@ -1,5 +1,5 @@
 var demouuid = "2d71acaa-ddd9-4a38-aa02-34cfc51fb6a1";
-var BASE_URL = 'http://ersamurai:8080/';
+var BASE_URL = 'http://peano-peano.apps.ocp4.rhocplab.com/';
 
 function startEngine(id) {
     var theUrl = BASE_URL + 'engine/' + id;

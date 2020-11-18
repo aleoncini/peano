@@ -1,4 +1,4 @@
-var BASE_URL = 'http://ersamurai:8080/';
+var BASE_URL = 'http://peano-peano.apps.ocp4.rhocplab.com/';
 var timetableId = "2d71acaa-ddd9-4a38-aa02-34cfc51fb6a1";
 var schoolId = '5fa138e549dfb3553d32d318';
 
