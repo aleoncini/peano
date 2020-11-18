@@ -1,4 +1,4 @@
-# orario module
+# Engine Module
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -40,7 +40,7 @@ You can then execute your native executable with: `./target/orario-<version>-run
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
 
-## Deploy the BACKEND module on OCP
+## Deploy the ENGINE module on OCP
 The deploy of this module on OCP is based on a *Dockerfile Strategy*, it points to a GIT repo containing the Dockerfile to build the container and run the application. To do that way execute the following steps:
 
 1. Access the OCP cluster where you want to deploy the application and switch to the project.
