@@ -1,0 +1,27 @@
+client-id: oauth2-secure-proxy-devel
+client-secret: d1277de8-b373-4a2c-b006-2d714500e1e3 # require for access_type: confidential
+# Note the redirection-url is optional, it will default to the X-Forwarded-Proto / X-Forwarded-Host r the URL scheme and host not found
+discovery-url: https://access-sso.apps.ocp4.rhocplab.com/auth/realms/peano
+# Indicates we should deny by default all requests and explicitly specify what is permitted
+secure-cookie: false
+skip-openid-provider-tls-verify: true
+enable-default-deny: true
+encryption-key: AgXa7xRcoClDEU0ZDSH4X0XhL5Qy2Z2j
+listen: :3000
+redirection-url: http://ersamurai:8082
+upstream-url: http://ersamurai:8000
+resources:
+- uri: /*
+  methods:
+  - GET
+  - POST
+- uri: /index.html
+  white-listed: true
+- uri: /favicon
+  white-listed: true
+- uri: /css/*
+  white-listed: true
+- uri: /js/*
+  white-listed: true
+- uri: /img/*
+  white-listed: true
