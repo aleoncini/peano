@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="the page to insert the lessons of the school">
+  <meta name="author" content="Andrea Leoncini">
+
+  <title>Formare le classi</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Application CSS -->
+  <link href="css/orario.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Orario Scolastico</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="teachers.html">Insegnanti
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="lessons.html">Lezioni
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Classi
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container head_base">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p><img src="img/orario.png" alt="logo"></p>
+        <p class="text_base">Formiamo le classi.
+          <br>Aggiungi le sezioni e per ciascuna sezione seleziona le classi che sono state formate.
+          <br><button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#add_section" id="btn_newsec">aggiungi</button>
+        </p>
+        <table class="table table-sm table-hover t_table" id="tbl_sections">
+        </table>  
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal to add section -->
+  <div class="modal fade" id="add_section" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="lbl_modify"><img src="img/logo_orario_small.png" alt="logo"> Aggiungi una sezione</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-3">
+              <select id="sel_section" class="form-control mb-2" data-style="btn-info">
+                <option value="0">A</option>
+                <option value="1">B</option>
+                <option value="2">C</option>
+                <option value="3">D</option>
+                <option value="4">E</option>
+                <option value="5">F</option>
+                <option value="6">G</option>
+                <option value="7">H</option>
+                <option value="8">I</option>
+                <option value="9">L</option>
+                <option value="10">M</option>
+                <option value="11">N</option>
+                <option value="12">O</option>
+                <option value="13">P</option>
+                <option value="14">Q</option>
+                <option value="15">R</option>
+              </select>
+            </div>
+            <div class="form-group col-1">
+              &nbsp;
+            </div>
+            <div class="form-group col-8">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1">
+                <label class="form-check-label" for="inlineCheckbox1">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="2">
+                <label class="form-check-label" for="inlineCheckbox2">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="3">
+                <label class="form-check-label" for="inlineCheckbox3">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="4">
+                <label class="form-check-label" for="inlineCheckbox4">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="5">
+                <label class="form-check-label" for="inlineCheckbox5">5</label>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+          <button type="button" class="btn btn-primary" id="btn_add_section">Aggiungi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END Modal -->
+  
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- app local JavaScript
+  ================================================== -->
+  <script src="js/orario.js"></script>
+
+  <script>
+
+    $(document).ready(function(){
+      loadGroups();
+      $("#btn_add_section").click(function(){
+        $('#add_section').modal('hide');
+        cls = [0, 0, 0, 0, 0];
+        if($('#inlineCheckbox1').is(':checked')){
+          cls[0] = 1;
+        }
+        if($('#inlineCheckbox2').is(':checked')){
+          cls[1] = 1;
+        }
+        if($('#inlineCheckbox3').is(':checked')){
+          cls[2] = 1;
+        }
+        if($('#inlineCheckbox4').is(':checked')){
+          cls[3] = 1;
+        }
+        if($('#inlineCheckbox5').is(':checked')){
+          cls[4] = 1;
+        }
+        setSection($('#sel_section').val(), cls);
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

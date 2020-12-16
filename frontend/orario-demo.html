@@ -4,8 +4,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
-
-    <title>Orario Scolastico</title>
+    <title>risultato demo</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -53,8 +52,10 @@
         <p><img src="img/orario.png" alt="orario logo"></p>
 
         <div class="alert alert-success" role="alert" id="wait_for_solution" style="display:none;">
-          Sembra che l'orario che hai richiesto non sia ancora disponibile.<br>
-          Devi solo aspettare, pensiamo a tutto noi. Considera che per calcolare l'orario ci vogliono circa un paio di minuti.
+          Hai lanciato la procedura di calcolo dell'orario, nel caso di questa demo basterebbero pochi secondi tuttavia il calcolo viene
+          lasciato girare per circa 30 secondi. Al momento quindi l'orario che hai richiesto non e' ancora disponibile.<br>
+          Ma tu non devi fare nulla, solo aspettare, pensiamo a tutto noi.<br>
+          Appena il nuovo orario sara' pronto questa pagina si aggiornera' automaticamente.
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -62,7 +63,8 @@
 
         <div id="selection_container" style="display:none;">
           <p class="text_base">
-            Ok orario pronto! Ricordati che puoi visualizzarlo per Professore o per Classe.
+            Ok orario pronto! Ricordati che puoi visualizzarlo per Professore o per Classe.<br>
+            <strong>NOTA:</strong> Per passare dall'una all'altra modalita' ricarica la pagina.
           </p>
           <div style="margin-bottom: .5rem">
             <button id="viewByProf" type="button" class="btn btn-success">
@@ -79,6 +81,34 @@
             <option selected>Seleziona un professore</option>
             <option>Giovanni Pascoli</option>
             <option>Rita Levi Montalcini</option>
+            <option>Alessandro Manzoni</option>
+            <option>Marco Tullio Cicerone</option>
+            <option>Tito Maccio Plauto</option>
+            <option>Margareth Tatcher</option>
+            <option>Winston Leonard Spencer Churchill</option>
+            <option>Cristoforo Colombo</option>
+            <option>Benedetto Croce</option>
+            <option>Karl Marx</option>
+            <option>Margherita Hack</option>
+            <option>Enrico Fermi</option>
+            <option>Guglielmo Marconi</option>
+            <option>Leonardo Fibonacci</option>
+            <option>Leonardo Da Vinci</option>
+            <option>George Byron</option>
+            <option>Ferdinando Magellano</option>
+            <option>Friedrich Nietzsche</option>
+            <option>Ettore Majorana</option>
+            <option>John von Neumann</option>
+            <option>Pietro Mennea</option>
+            <option>Jacques Prevert</option>
+            <option>Charles Baudelaire</option>
+            <option>Umberto Eco</option>
+            <option>Charles Darwin</option>
+            <option>Alessandro Volta</option>
+            <option>Srinivasa Ramanujan</option>
+            <option>Primo Carnera</option>
+            <option>Freddie Mercury</option>
+            <option>Albert Einstein</option>
           </select>
         </div>
 
@@ -90,6 +120,16 @@
             <option>Classe 3A</option>
             <option>Classe 4A</option>
             <option>Classe 5A</option>
+            <option>Classe 1B</option>
+            <option>Classe 2B</option>
+            <option>Classe 3B</option>
+            <option>Classe 4B</option>
+            <option>Classe 5B</option>
+            <option>Classe 1C</option>
+            <option>Classe 2C</option>
+            <option>Classe 3C</option>
+            <option>Classe 4C</option>
+            <option>Classe 5C</option>
             <option>Classe 1D</option>
             <option>Classe 2D</option>
             <option>Classe 3D</option>
@@ -100,7 +140,6 @@
 
         <div id="timetable_container" style="display:none;">
           <br>
-          <h3 id="tt_title">Prof. Giovanni Pascoli</h3>
         
           <table class="table">
             <thead class="thead-light">
@@ -160,24 +199,6 @@
                 <td id="FRIDAY_5"></td>
                 <td id="SATURDAY_5"></td>
               </tr>
-              <tr>
-                <th scope="row">6a Ora</th>
-                <td id="MONDAY_6"></td>
-                <td id="TUESDAY_6"></td>
-                <td id="WEDNESDAY_6"></td>
-                <td id="THURSDAY_6"></td>
-                <td id="FRIDAY_6"></td>
-                <td id="SATURDAY_6"></td>
-              </tr>
-              <tr>
-                <th scope="row">7a Ora</th>
-                <td id="MONDAY_7"></td>
-                <td id="TUESDAY_7"></td>
-                <td id="WEDNESDAY_7"></td>
-                <td id="THURSDAY_7"></td>
-                <td id="FRIDAY_7"></td>
-                <td id="SATURDAY_7"></td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -193,6 +214,7 @@
   <!-- app local JavaScript
   ================================================== -->
   <script src="js/moment.min.js"></script>
+  <script src="js/common.js"></script>
   <script src="js/orario.js"></script>
 
     <script>

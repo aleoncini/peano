@@ -1,20 +1,27 @@
-client-id: oauth2-secure-proxy-devel
+client-id: orario
+#client-id: oauth2-secure-proxy-devel
 client-secret: d1277de8-b373-4a2c-b006-2d714500e1e3 # require for access_type: confidential
+#client-secret: d1277de8-b373-4a2c-b006-2d714500e1e3 # require for access_type: confidential
 # Note the redirection-url is optional, it will default to the X-Forwarded-Proto / X-Forwarded-Host r the URL scheme and host not found
 discovery-url: https://access-sso.apps.ocp4.rhocplab.com/auth/realms/peano
 # Indicates we should deny by default all requests and explicitly specify what is permitted
 secure-cookie: false
 skip-openid-provider-tls-verify: true
 enable-default-deny: true
-encryption-key: AgXa7xRcoClDEU0ZDSH4X0XhL5Qy2Z2j
+encryption-key: a6a1a667-b886-4fe2-81f1-5615ea227b56
+#encryption-key: AgXa7xRcoClDEU0ZDSH4X0XhL5Qy2Z2j
 listen: :3000
-redirection-url: http://ersamurai:8082
-upstream-url: http://ersamurai:8000
+redirection-url: http://gate-peano.apps.ocp4.rhocplab.com/
+#redirection-url: http://ersamurai:8082
+upstream-url: http://frontend:8080
+#upstream-url: http://ersamurai:8000
 resources:
 - uri: /*
   methods:
   - GET
   - POST
+  - PUT
+  - DELETE
 - uri: /index.html
   white-listed: true
 - uri: /favicon
@@ -25,3 +32,14 @@ resources:
   white-listed: true
 - uri: /img/*
   white-listed: true
+- uri: /demo.html
+  white-listed: true
+- uri: /orario-demo.html
+  white-listed: true
+- uri: /rs/engine/2d71acaa-ddd9-4a38-aa02-34cfc51fb6a1
+  white-listed: true
+- uri: /rs/orario/2d71acaa-ddd9-4a38-aa02-34cfc51fb6a1
+  white-listed: true
+- uri: /rs/orario/check/2d71acaa-ddd9-4a38-aa02-34cfc51fb6a1
+  white-listed: true
+  

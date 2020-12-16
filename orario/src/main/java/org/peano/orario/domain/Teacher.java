@@ -20,4 +20,26 @@ public class Teacher extends PanacheMongoEntity {
     public static List<Teacher> findBySchool(String schoolId){
         return list("schoolId", schoolId);
     }
+
+    public String getName(){
+        return this.name;
+    }
+    public String getSubject(){
+        return this.subject;
+    }
+    public String getSchoolId(){
+        return this.schoolId;
+    }
+    public Teacher setName(String name){
+        this.name = name;
+        return this;
+    }
+    public Teacher setSubject(String subject){
+        this.subject = subject;
+        return this;
+    }
+    public Teacher setSchoolId(String id){
+        this.schoolId = id;
+        return this;
+    }
 }

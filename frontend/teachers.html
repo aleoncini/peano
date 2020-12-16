@@ -50,10 +50,10 @@
   <div class="container head_base">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <p><img src="img/orario.png"></p>
+        <p><img src="img/orario.png" alt="logo"></p>
         <p class="text_base">Adesso è il momento dei professori.
           <br>Inserisci qui la lista di tutti i professori della scuola e la materia che insegnano
-          <br><button type="button" class="btn btn-outline-primary" id="btn_newprof"><span class="fas fa-plus-circle"></span> aggiungi</button>
+          <br><button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#add_teacher" id="btn_newprof"><span class="fas fa-plus-circle"></span> aggiungi</button>
         </p>
         <table class="table table-sm table-hover t_table" id="tbl_teachers">
         </table>  
@@ -66,7 +66,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="lbl_modify">Aggiungi un insegnante alla lista</h4>
+          <img src="img/logo_orario_small.png" alt="logo"><h4 class="modal-title" id="lbl_modify">Aggiungi un insegnante alla lista</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -78,8 +78,21 @@
             <small id="txt_1" class="form-text text-muted">Inserire nome e cognome dell'insegnante</small>
           </div>
           <div class="form-group">
-            <label for="txt_subject">Materia</label>
-            <input type="text" class="form-control" id="txt_subject" placeholder="es. Scienze Motorie">
+            <label for="selTopic">Materia</label>
+            <select id="selTopic" class="form-control mb-2" data-style="btn-info">
+              <option>Italiano</option>
+              <option>Lingua straniera</option>
+              <option>Latino</option>
+              <option>Storia e Geografia</option>
+              <option>Storia</option>
+              <option>Filosofia</option>
+              <option>Scienze naturali</option>
+              <option>Fisica</option>
+              <option>Matematica</option>
+              <option>Disegno e Storia dell'Arte</option>
+              <option>Scienze motorie</option>
+              <option>Religione</option>
+            </select>
             <small id="txt_2" class="form-text text-muted">Inserire la materia di insegnamento</small>
           </div>
         </div>
@@ -90,8 +103,7 @@
       </div>
     </div>
   </div>
-  <!-- END Modal -->
-  
+  <!-- END Modal --> 
 
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery.min.js"></script>
@@ -104,14 +116,11 @@
   <script>
 
     $(document).ready(function(){
-      loadTeachers(formatTeachersTable);
-      $("#btn_newprof").click(function(){
-        $('#add_teacher').modal('show');
-      });
+      checkSchool();
       $("#btn_add_teacher").click(function(){
         $('#add_teacher').modal('hide');
         var name = $('#txt_teacher_name').val();
-        var subject = $('#txt_subject').val();
+        var subject = $('#selTopic').val();
         saveTeacher(name, subject);
       });
     });

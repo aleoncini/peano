@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="the page to insert the teachers of the school">
+  <meta name="author" content="Andrea Leoncini">
+
+  <title>Orario Scolastico</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Application CSS -->
+  <link href="css/orario.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Orario Scolastico</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Insegnanti
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="lessons.html">Lezioni</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container head_base">
+    <div class="col-lg-12 text-center">
+      <p><img src="img/orario.png" alt="logo"></p>
+      <p class="text_base">Configurazione
+        <br>Prima di tutto Serve inserire alcune informazioni di base della scuola
+      </p>
+
+      <!-- Success operation alert -->
+      <div class="alert alert-success" role="alert" id="save_ok" style="display:none;">
+        Ottimo, Informazioni della scuola correttamente salvate, ora vai alla pagina di configurazione dei <a href="teachers.html" class="alert-link" id="a-viewround">professori</a>.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
+      <!-- Warning operation alert -->
+      <div class="alert alert-warning" role="alert" id="al_warn" style="display:none;">
+        Uh Oh! qualcosa non va. <span id="al_warn_cont"></span>
+        <br>Per favore correggi e salva di nuovo.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label for="txt_school_name">Nome</label>
+        <input type="text" class="form-control" id="txt_school_name" placeholder="es. XIV Liceo Scientifico...">
+        <small id="txt_1" class="form-text text-muted">Inserire il nome dell'istituto</small>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inp_nm_room">N.ro di Aule</label>
+          <input type="text" class="form-control" id="inp_nm_room">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inp_nm_lab">N.ro di Laboratori</label>
+          <input type="text" class="form-control" id="inp_nm_lab">
+        </div>
+        <div class="form-group has-error col-md-4" id="fg_nm_gym">
+          <label for="inp_nm_gym">N.ro di Palestre</label>
+          <input type="text" class="form-control" id="inp_nm_gym">
+        </div>
+      </div>
+      <button type="button" class="btn btn-outline-primary" id="btn_save">Salva</button>
+    </div>
+  </div>  
+
+  <!-- Modal form to collect user info settings page-->
+  <div class="modal fade" id="enterUserInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Informazioni utente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Per utilizzare l'applicazione occorre registrarsi. Per farlo basta indicare la propria email.
+              </p>
+              <div class="form-group">
+                <label for="inp_user_id">Indirizzo di posta elettronica</label>
+                <input type="text" class="form-control" id="inp_user_id">
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn_userid">salva</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- app local JavaScript
+  ================================================== -->
+  <script src="js/orario.js"></script>
+
+  <script>
+
+    $(document).ready(function(){
+      checkUser();
+      $("#btn_userid").click(function(){
+        if( $('#inp_user_id').val().length > 0 ){
+          localStorage.userid = $('#inp_user_id').val();
+          $('#enterUserInfoModal').modal('hide');
+        }
+      });
+      $("#btn_save").click(function(){
+        var err = false;
+        var msg = '';
+        if( $('#txt_school_name').val().length == 0 ){
+          msg += '<br>- Non hai specificato il nome della Scuola.';
+          err = true;
+        }
+        if( ($('#inp_nm_room').val().length == 0) || isNaN($('#inp_nm_room').val()) ){
+          msg += '<br>- Il numero di aule deve essere un valore numerico.';
+          err = true;
+        }
+        if( ($('#inp_nm_lab').val().length == 0) || isNaN($('#inp_nm_lab').val()) ){
+          msg += '<br>- Il numero di laboratori deve essere un valore numerico.';
+          err = true;
+        }
+        if( ($('#inp_nm_gym').val().length == 0) || isNaN($('#inp_nm_gym').val()) ){
+          msg += '<br>- Il numero di palestre deve essere un valore numerico.';
+          err = true;
+        }
+        if(err){
+          $('#al_warn_cont').html(msg);
+          $('#al_warn').fadeIn();
+          setTimeout(function() { $('#al_warn').fadeOut(); }, 5000);
+        } else {
+          var school = {};
+          school.admin = localStorage.userid;
+          school.name = $('#txt_school_name').val();
+          school.rooms = $('#inp_nm_room').val();
+          school.labs = $('#inp_nm_lab').val();
+          school.gyms = $('#inp_nm_gym').val();
+          addSchool(school, function(data){
+            $('#save_ok').fadeIn();
+            localStorage.setItem("school", JSON.stringify(data));
+            setTimeout(function() { $('#save_ok').fadeOut(); }, 15000);
+          });
+        }
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

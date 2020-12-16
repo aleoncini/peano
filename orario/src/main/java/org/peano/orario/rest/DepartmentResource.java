@@ -12,47 +12,47 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.bson.types.ObjectId;
+import org.peano.orario.domain.Department;
 import org.peano.orario.domain.Teacher;
 
-@Path("/teachers")
+@Path("/departments")
 @Consumes("application/json")
 @Produces("application/json")
-public class TeacherResource {
+public class DepartmentResource {
 
     @GET
-    public List<Teacher> list() {
-        return Teacher.listAll();
+    public List<Department> list() {
+        return Department.listAll();
     }
 
     @GET
     @Path("/{id}")
-    public Teacher get(@PathParam("id") String id) {
-        return Teacher.findById(new ObjectId(id));
+    public Department get(@PathParam("id") String id) {
+        return Department.findById(new ObjectId(id));
     }
 
     @POST
-    public Teacher create(Teacher teacher) {
-        teacher.persist();
-        return teacher;
+    public Department create(Department department) {
+        department.persist();
+        return department;
     }
 
     @PUT
-    @Path("/{id}")
-    public void update(@PathParam("id") String id, Teacher teacher) {
-        teacher.update();
+    public void update(Department department) {
+        department.update();
     }
 
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") String id) {
-        Teacher teacher = Teacher.findById(new ObjectId(id));
-        teacher.delete();
+        Department department = Department.findById(new ObjectId(id));
+        department.delete();
     }
 
     @GET
-    @Path("/search/{name}")
-    public Teacher search(@PathParam("name") String name) {
-        return Teacher.findByName(name);
+    @Path("/find/{name}")
+    public Department find(@PathParam("name") String name) {
+        return Department.findByName(name);
     }
 
     @GET

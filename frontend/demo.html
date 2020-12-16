@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
 
-    <title>Orario Scolastico</title>
+    <title>Orario Scolastico - DEMO</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,28 +21,10 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Orario Scolastico</a>
+      <a class="navbar-brand" href="index.html">Orario Scolastico</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
     </div>
   </nav>
 
@@ -51,18 +33,21 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <p><img src="img/orario.png" alt="orario logo"></p>
-
         <p class="text_base">
             Attualmente il sistema è preconfigurato con informazioni (parzialmente) inventate. Si tratta sostanzialmente di una DEMO per verificare che il
             motore per il calcolo dell'orario, basato su technologia OPTAPLANNER, un progetto Open Source sponsorizzato da Red Hat, funzioni correttamente.
             Gli sviluppi ora stanno producendo una interfaccia web che permetta a chiunque di configurare la propria scuola e creare il relativo Orario scolastico.
         </p>
+        <p class="text_base">
+          La demo simula una scuola dove ci sono 4 sezioni, A B C e D, 46 professori, il programma didattico previsto per un Liceo Scientifico,
+          20 aule didattiche (nella demo, almeno per ora, non vengono considerate le palestre ed i laboratori) ed un orario settimanale di 5 giorni su sette
+          e 6 ore giornaliere. Nella demo è possibile che sia i professori che gli alunni delle classi si possano spostare di aula.
+        </p>
         <div style="margin-bottom: .5rem">
             <button id="solveButton" type="button" class="btn btn-success">
                 Avvia il calcolo
             </button>    
-        </div>    
-    
+        </div>        
       </div>
     </div>
   </div>
@@ -74,15 +59,15 @@
   <!-- app local JavaScript
   ================================================== -->
   <script src="js/moment.min.js"></script>
-  <script src="js/demo.js"></script>
+  <script src="js/common.js"></script>
 
-    <script>
-        $(document).ready( function() {
-            //this demo uses just one hardcoded ID
-            $("#solveButton").click(function() {
-              deleteTimetable(demouuid, startEngine);
-            });
-        });
-    </script>
+  <script>
+      $(document).ready( function() {
+          //this demo uses just one hardcoded ID
+          $("#solveButton").click(function() {
+            deleteTimetable("2d71acaa-ddd9-4a38-aa02-34cfc51fb6a1", startEngine);
+          });
+      });
+  </script>
 </body>
 </html>
