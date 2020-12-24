@@ -1,4 +1,4 @@
-var BASE_URL = 'http://peano-peano.apps.ocp4.rhocplab.com/';
+var BASE_URL = 'https://sec-fe-peano.apps.ocp4.rhocplab.com/';
 //var BASE_URL = 'http://ersamurai:8082/rs/';
 
 function checkUser() {
