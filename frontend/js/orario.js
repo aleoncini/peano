@@ -35,7 +35,7 @@ function formatClassroomTimetable(lessons) {
 };
 
 function checkTimetable(id) {
-    var theUrl = BASE_URL + 'orario/check/' + id;
+    var theUrl = 'rs/orario/check/' + id;
     $.ajax({
         url: theUrl,
         type: 'GET',
