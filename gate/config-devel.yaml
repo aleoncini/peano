@@ -1,13 +1,15 @@
-client-id: orario
+client-id: oauth2-secure-proxy-devel
 client-secret: d1277de8-b373-4a2c-b006-2d714500e1e3 # require for access_type: confidential
+# Note the redirection-url is optional, it will default to the X-Forwarded-Proto / X-Forwarded-Host r the URL scheme and host not found
 discovery-url: https://access-sso.apps.ocp4.rhocplab.com/auth/realms/peano
+# Indicates we should deny by default all requests and explicitly specify what is permitted
 secure-cookie: false
 skip-openid-provider-tls-verify: true
 enable-default-deny: true
-encryption-key: a6a1a667-b886-4fe2-81f1-5615ea227b56
+encryption-key: AgXa7xRcoClDEU0ZDSH4X0XhL5Qy2Z2j
 listen: :8080
-redirection-url: http://gate-peano.apps.ocp4.rhocplab.com/
-upstream-url: http://frontend:8080
+redirection-url: http://ersamurai:8082
+upstream-url: http://ersamurai:8000
 resources:
 - uri: /*
   methods:
