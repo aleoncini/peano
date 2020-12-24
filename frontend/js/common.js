@@ -1,6 +1,3 @@
-var BASE_URL = 'https://sec-fe-peano.apps.ocp4.rhocplab.com/';
-//var BASE_URL = 'http://ersamurai:8082/rs/';
-
 function checkUser() {
     if (!localStorage.userid) {
         $('#enterUserInfoModal').modal('show');
@@ -32,9 +29,8 @@ function getUrlParameter(name) {
 
 function loadLessonsByTeacher(teacher, callbackFunction) {
     var id = getUrlParameter("id");
-    var theUrl = BASE_URL + 'orario/' + id + '?t=' + teacher;
+    var theUrl = 'rs/orario/' + id + '?t=' + teacher;
     var res = encodeURIComponent(theUrl);
-    console.log("===> " + res);
     $.ajax({
         url: theUrl,
         type: 'GET',
@@ -48,9 +44,8 @@ function loadLessonsByTeacher(teacher, callbackFunction) {
 
 function loadLessonsByClassroom(classroom, callbackFunction) {
     var id = getUrlParameter("id");
-    var theUrl = BASE_URL + 'orario/' + id + '?r=' + classroom;
+    var theUrl = 'rs/orario/' + id + '?r=' + classroom;
     var res = encodeURIComponent(theUrl);
-    console.log("===> " + res);
     $.ajax({
         url: theUrl,
         type: 'GET',
@@ -64,9 +59,8 @@ function loadLessonsByClassroom(classroom, callbackFunction) {
 
 function loadLessonsByStudentGroup(studentGroup, callbackFunction) {
     var id = getUrlParameter("id");
-    var theUrl = BASE_URL + 'orario/' + id + '?s=' + studentGroup;
+    var theUrl = 'rs/orario/' + id + '?s=' + studentGroup;
     var res = encodeURIComponent(theUrl);
-    console.log("===> " + res);
     $.ajax({
         url: theUrl,
         type: 'GET',
@@ -79,7 +73,7 @@ function loadLessonsByStudentGroup(studentGroup, callbackFunction) {
 };
 
 function startEngine(id) {
-    var theUrl = BASE_URL + 'engine/' + id;
+    var theUrl = 'rs/engine/' + id;
     $.ajax({
         url: theUrl,
         type: 'POST',
@@ -91,7 +85,7 @@ function startEngine(id) {
 }
 
 function deleteTimetable(id, callbackFunction) {
-    var theUrl = BASE_URL + 'orario/' + id;
+    var theUrl = 'rs/orario/' + id;
     $.ajax({
         url: theUrl,
         type: 'DELETE',
@@ -103,7 +97,7 @@ function deleteTimetable(id, callbackFunction) {
 };
 
 function checkTimetable(id) {
-    var theUrl = BASE_URL + 'orario/check/' + id;
+    var theUrl = 'rs/orario/check/' + id;
     $.ajax({
         url: theUrl,
         type: 'GET',
