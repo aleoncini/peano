@@ -160,34 +160,7 @@
   <script>
 
     $(document).ready(function(){
-      checkUser(userFound, firstTimeUser);
-      $("#checkCode").click(function(){
-        $('#enterUserInfoModal').modal('hide');
-        checkCode($('#inputCode').val());
-      });
-      $(document).on("click", ".goto_view_school", function () {
-            window.location.href = 'school.html?schoolid=' + $(this).data('id');
-      });
-      $("#btn_add_timetable").click(function(){
-        $('#add_timetable').modal('hide');
-        var tt = {};
-        tt.description = $('#txt_description').val();
-        tt.schoolId = $('#sel_school').val();
-        addTimetable(tt, addTimetableToTable);
-      });
     });
-
-    function userFound(){
-      loadUser(formatUserName);
-      loadSchoolsByAdmin(formatSchoolsTable);
-    };
-    function firstTimeUser(){
-      window.location.href = 'code.html';
-    };
-    function formatUserName(user){
-      $('#username').html(user.name);
-      $('#userrole').html('profilo: ' + user.role);
-    };
 
   </script>
 
