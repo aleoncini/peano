@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Orario Scolastico - configurazione</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Application CSS -->
+  <link href="css/orario.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
+  <script src="https://access-peano.apps.ocp4.rhocplab.com/auth/js/keycloak.js"></script>
+  <script type="text/javascript">
+    const keycloak = Keycloak({
+      "auth-server-url": "https://access-peano.apps.ocp4.rhocplab.com/auth",
+      "realm": "orarioscolastico",
+      //"ssl-required": "external",
+      //"resource": "yourRealm/keep it default",
+      //"public-client": true,
+      //"confidential-port": 0,
+      //"url": 'https://access-peano.apps.ocp4.rhocplab.com/auth',
+      "clientId": 'secure-proxy',
+      "enable-cors": true
+    });
+
+    const loadData = () => {
+      console.log(keycloak.subject);
+      if (keycloak.idToken) {
+        document.location.href = "?user="+keycloak.idTokenParsed.preferred_username;
+        console.log('IDToken');
+        console.log(keycloak.idTokenParsed.preferred_username);
+        console.log(keycloak.idTokenParsed.email);
+        console.log(keycloak.idTokenParsed.name);
+        console.log(keycloak.idTokenParsed.given_name);
+        console.log(keycloak.idTokenParsed.family_name);
+      } else {
+        keycloak.loadUserProfile(function() {
+            console.log('Account Service');
+            console.log(keycloak.profile.username);
+            console.log(keycloak.profile.email);
+            console.log(keycloak.profile.firstName + ' ' + keycloak.profile.lastName);
+            console.log(keycloak.profile.firstName);
+            console.log(keycloak.profile.lastName);
+        }, function() {
+            console.log('Failed to retrieve user details. Please enable claims or account role');
+        });
+      }
+    };
+
+    const loadFailure =  () => {
+      console.log('Failed to load data.  Check console log');
+    };
+
+    const reloadData = () => {
+      keycloak.updateToken(10)
+            .success(loadData)
+            .error(() => {
+                console.log('Failed to load data.  User is logged out.');
+            });
+    }
+
+    keycloak.init({ onLoad: 'login-required' }).success(reloadData);
+
+</script>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Configurazione</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servizi</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="code.html">codici di accesso</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="page_bnr">
+      <table>
+        <tr>
+          <td  id="username" class="usr"></td>
+          <td rowspan="2"><img src="img/logo_orario_small.png"></td>
+        </tr>
+        <tr>
+          <td id="userrole" class="rol"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="head_base">
+      <p class="table_title">Elenco delle scuole gestite <a class="btn btn-outline-primary btn-sm" href="school.html" role="button">aggiungi scuola</a></p>
+      <table class="table table-sm table-hover t_table" id="tbl_schools">
+      </table>
+      <hr>
+      <p class="table_title">Elenco degli orari preparati <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add_timetable" id="btn_open_timetable_modal">aggiungi orario</button></p>
+      <table class="table table-sm table-hover t_table" id="tbl_timetables">
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal to add teacher -->
+  <div class="modal fade" id="add_timetable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="img/logo_orario_small.png" alt="logo"><h4 class="modal-title" id="lbl_modify">Crea un nuovo orario</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="sel_school">Per quale scuola vuoi preparare l'orario?</label>
+            <select id="sel_school" class="form-control" data-style="btn-info">
+            </select>
+            <small id="txt_2" class="form-text text-muted">Scegliere la scuola tra quelle amministrate</small>
+          </div>
+          <div class="form-group">
+            <label for="txt_description">Descrizione</label>
+            <input type="text" class="form-control" id="txt_description" placeholder="es. Orario lezioni anno scolastico 2020/2021">
+            <small id="txt_1" class="form-text text-muted">Inserisci descrizione dell'orario</small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+          <button type="button" class="btn btn-primary" id="btn_add_timetable">Aggiungi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END Modal -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <!-- app js library -->
+  <script src="js/common.js"></script>
+  <script src="js/home.js"></script>
+  <script>
+
+    $(document).ready(function(){
+      checkUser(userFound, firstTimeUser);
+      $("#checkCode").click(function(){
+        $('#enterUserInfoModal').modal('hide');
+        checkCode($('#inputCode').val());
+      });
+      $(document).on("click", ".goto_view_school", function () {
+            window.location.href = 'school.html?schoolid=' + $(this).data('id');
+      });
+      $("#btn_add_timetable").click(function(){
+        $('#add_timetable').modal('hide');
+        var tt = {};
+        tt.description = $('#txt_description').val();
+        tt.schoolId = $('#sel_school').val();
+        addTimetable(tt, addTimetableToTable);
+      });
+    });
+
+    function userFound(){
+      loadUser(formatUserName);
+      loadSchoolsByAdmin(formatSchoolsTable);
+    };
+    function firstTimeUser(){
+      window.location.href = 'code.html';
+    };
+    function formatUserName(user){
+      $('#username').html(user.name);
+      $('#userrole').html('profilo: ' + user.role);
+    };
+
+  </script>
+
+</body>
+
+</html>
