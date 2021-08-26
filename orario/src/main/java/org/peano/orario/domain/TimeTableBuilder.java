@@ -16,7 +16,7 @@ public class TimeTableBuilder {
         System.out.println("rooms______________________ " + rooms.size());
         List<Lesson> lessons = this.buildLessonList();
         System.out.println("lessons____________________ " + lessons.size());
-        return new TimeTable(slots, rooms, lessons);
+        return new TimeTable().setTimeslotList(slots).setRoomList(rooms).setLessonList(lessons);
     }
 
 	private List<Lesson> buildLessonList() {

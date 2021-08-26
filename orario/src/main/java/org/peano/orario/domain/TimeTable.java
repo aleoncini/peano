@@ -10,8 +10,12 @@ import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.optaplanner.core.api.solver.SolverStatus;
 
+import io.quarkus.mongodb.panache.MongoEntity;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+
 @PlanningSolution
-public class TimeTable {
+@MongoEntity(collection = "timetables")
+public class TimeTable extends PanacheMongoEntity {
 
     @ProblemFactCollectionProperty
     @ValueRangeProvider(id = "timeslotRange")
@@ -22,7 +26,8 @@ public class TimeTable {
     @PlanningEntityCollectionProperty
     private List<Lesson> lessonList;
 
-    public String schoolId;
+    private String schoolId;
+    private String description;
 
     @PlanningScore
     private HardSoftScore score;
@@ -30,25 +35,35 @@ public class TimeTable {
     // Ignored by OptaPlanner, used by the UI to display solve or stop solving button
     private SolverStatus solverStatus;
 
-    public TimeTable() {
-    }
-
-    public TimeTable(List<Timeslot> timeslotList, List<Room> roomList, List<Lesson> lessonList) {
-        this.timeslotList = timeslotList;
-        this.roomList = roomList;
-        this.lessonList = lessonList;
+    public static List<TimeTable> findBySchool(String schoolId){
+        return list("schoolId", schoolId);
     }
 
     public List<Timeslot> getTimeslotList() {
         return timeslotList;
     }
 
+    public TimeTable setTimeslotList(List<Timeslot> timeslotList) {
+        this.timeslotList = timeslotList;
+        return this;
+    }
+
     public List<Room> getRoomList() {
         return roomList;
     }
 
+    public TimeTable setRoomList(List<Room> roomList) {
+        this.roomList = roomList;
+        return this;
+    }
+
     public List<Lesson> getLessonList() {
         return lessonList;
+    }
+
+    public TimeTable setLessonList(List<Lesson> lessonList) {
+        this.lessonList = lessonList;
+        return this;
     }
 
     public HardSoftScore getScore() {
@@ -63,8 +78,21 @@ public class TimeTable {
         this.solverStatus = solverStatus;
     }
 
+    public String getSchoolId() {
+        return this.schoolId;
+    }
+
     public TimeTable setSchoolId(String schoolId) {
         this.schoolId = schoolId;
+        return this;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public TimeTable setDescription(String description) {
+        this.description = description;
         return this;
     }
 

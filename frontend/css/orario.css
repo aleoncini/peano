@@ -46,3 +46,30 @@
     font-size: 0.8em;
     font-weight: normal;
 }
+
+.table_title {
+    text-align: left;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    color: #b45f06;
+}
+
+.page_bnr {
+    float:right;
+}
+
+.usr {
+    text-align: right;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: #26214b;
+    vertical-align: bottom;
+}
+
+.rol {
+    text-align: right;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    color: #495255;
+    vertical-align: middle;
+}

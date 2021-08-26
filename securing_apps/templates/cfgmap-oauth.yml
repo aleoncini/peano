@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: oauth-config
+data:
+  oauth2-proxy.cfg: |+
+    http_address="0.0.0.0:8080"
+    # create a secret with the command:
+    # python -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(16)).decode())'
+    cookie_secret="<secret>"
+    cookie_secure="false"
+    email_domains='*'
+    skip_provider_button='true'
+
+    pass_authorization_header='true'
+    pass_access_token='true'
+
+    # the http url(s) of the upstream endpoint. If multiple, routing is based on path
+    upstreams = "http://frontend:8080/"
+
+    # the method/paths that will skip authentication
+    skip_auth_routes = "/js/*|/css/*|/img/*|/index.html|/favicon.ico"
+
+    cookie_domains=[".apps.ocp4.rhocplab.com"] # Required so cookie can be read on all subdomains.
+    whitelist_domains=[".apps.ocp4.rhocplab.com"] # Required to allow redirection back to original requested target.
+
+    # keycloak provider
+    provider="oidc"
+    provider_display_name="Keycloak"
+
+    client_id="<client_id>"
+    client_secret="<secret>"
+    login_url="https://access-peano.apps.ocp4.rhocplab.com/auth/realms/orarioscolastico/protocol/openid-connect/auth"
+    redeem_url="https://access-peano.apps.ocp4.rhocplab.com/auth/realms/orarioscolastico/protocol/openid-connect/token"
+    profile_url="https://access-peano.apps.ocp4.rhocplab.com/auth/realms/orarioscolastico/protocol/openid-connect/userinfo"
+    validate_url="https://access-peano.apps.ocp4.rhocplab.com/auth/realms/orarioscolastico/protocol/openid-connect/userinfo"
+
+    oidc_issuer_url="https://access-peano.apps.ocp4.rhocplab.com/auth/realms/orarioscolastico"
+
+    redirect_url="https://gw-peano.apps.ocp4.rhocplab.com/oauth2/callback"

@@ -13,7 +13,6 @@ import javax.ws.rs.Produces;
 
 import org.bson.types.ObjectId;
 import org.peano.orario.domain.StudentGroups;
-import org.peano.orario.domain.Teacher;
 
 @Path("/groups")
 @Consumes("application/json")

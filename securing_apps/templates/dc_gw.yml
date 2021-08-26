@@ -1,0 +1,34 @@
+---
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+ name: gw
+ labels:
+   app: gw
+spec:
+ strategy:
+   type: Rolling
+ replicas: 1
+ selector:
+   app: gw
+ template:
+   metadata:
+     labels:
+       app: gw
+   spec:
+     containers:
+       - name: oauth2
+         image: quay.io/oauth2-proxy/oauth2-proxy:v7.1.3
+         args:
+           - --config=/etc/oauth2-proxy.cfg
+         ports:
+           - containerPort: 4180
+             name: oauth2
+         volumeMounts:
+           - name: oauth-config
+             mountPath: /etc/oauth2-proxy.cfg
+             subPath: oauth2-proxy.cfg
+     volumes:
+       - name : oauth-config
+         configMap:
+           name: oauth-config

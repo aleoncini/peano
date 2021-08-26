@@ -30,13 +30,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home
-            </a>
+            <a class="nav-link" href="home.html">Home</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Insegnanti
-              <span class="sr-only">(current)</span>
-            </a>
+            <a class="nav-link" href="teachers.html">Insegnanti</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="lessons.html">Lezioni</a>
@@ -46,13 +43,21 @@
     </div>
   </nav>
 
+
   <!-- Page Content -->
-  <div class="container head_base">
-    <div class="col-lg-12 text-center">
-      <p><img src="img/orario.png" alt="logo"></p>
-      <p class="text_base">Configurazione
-        <br>Prima di tutto Serve inserire alcune informazioni di base della scuola
-      </p>
+  <div class="container">
+    <div class="page_bnr">
+      <table>
+        <tr>
+          <td  id="username" class="usr"></td>
+          <td rowspan="2"><img src="img/logo_orario_small.png"></td>
+        </tr>
+        <tr>
+          <td id="userrole" class="rol"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-lg-12 text-center head_base">
 
       <!-- Success operation alert -->
       <div class="alert alert-success" role="alert" id="save_ok" style="display:none;">
@@ -61,6 +66,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <!-- END ------------------- -->
     
       <!-- Warning operation alert -->
       <div class="alert alert-warning" role="alert" id="al_warn" style="display:none;">
@@ -70,27 +76,38 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <!-- END ------------------- -->
 
       <div class="form-group">
-        <label for="txt_school_name">Nome</label>
+        <p class="table_title">Nome</p>
         <input type="text" class="form-control" id="txt_school_name" placeholder="es. XIV Liceo Scientifico...">
-        <small id="txt_1" class="form-text text-muted">Inserire il nome dell'istituto</small>
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="inp_nm_room">N.ro di Aule</label>
+          <p class="table_title">Numero di Aule</p>
           <input type="text" class="form-control" id="inp_nm_room">
         </div>
         <div class="form-group col-md-4">
-          <label for="inp_nm_lab">N.ro di Laboratori</label>
+          <p class="table_title">Numero di Laboratori</p>
           <input type="text" class="form-control" id="inp_nm_lab">
         </div>
         <div class="form-group has-error col-md-4" id="fg_nm_gym">
-          <label for="inp_nm_gym">N.ro di Palestre</label>
+          <p class="table_title">Numero di Palestre</p>
           <input type="text" class="form-control" id="inp_nm_gym">
         </div>
       </div>
-      <button type="button" class="btn btn-outline-primary" id="btn_save">Salva</button>
+      <!-- Save only -->
+      <div id="save_only" style="display:none;">
+        <button type="button" class="btn btn-outline-primary" id="btn_save">Salva</button>
+      </div>
+      <!-- END ------------------- -->
+      <!-- Update and Delete -->
+      <div id="upd_and_delete" style="display:none;">
+        <button type="button" class="btn btn-outline-primary" id="btn_update">Aggiorna</button>
+        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#mdl_confirm_delete">Elimina</button>
+      </div>
+      <!-- END ------------------- -->
+      
     </div>
   </div>  
 
@@ -119,24 +136,56 @@
         </div>
     </div>
   </div>
+  <!-- END modal ------------------- -->
+
+  <!-- Modal to confirm DELETE school request -->
+  <div class="modal fade" id="mdl_confirm_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Conferma Rimozione Scuola</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3>ATTENZIONE</h3>
+            <p>
+              Stai rimuovendo la scuola dall'archivio, se confermi i dati della scuola verranno eliminati e non potranno più essere recuperati.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+            <button type="button" class="btn btn-primary" id="btn_confirm_delete">Conferma</button>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- END modal ------------------- -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
 
-    <!-- app local JavaScript
-  ================================================== -->
+  <!-- app local JavaScript -->
+  <script src="js/common.js"></script>
   <script src="js/orario.js"></script>
 
   <script>
 
+    var update_mode = false;
+
     $(document).ready(function(){
-      checkUser();
+      checkUser(userFound, firstTimeUser);
       $("#btn_userid").click(function(){
         if( $('#inp_user_id').val().length > 0 ){
           localStorage.userid = $('#inp_user_id').val();
           $('#enterUserInfoModal').modal('hide');
         }
+      });
+      $("#btn_confirm_delete").click(function(){
+        $('#mdl_confirm_delete').modal('hide');
+        removeSchool(localStorage.getItem("schoolid"), firstTimeUser);
       });
       $("#btn_save").click(function(){
         var err = false;
@@ -160,7 +209,7 @@
         if(err){
           $('#al_warn_cont').html(msg);
           $('#al_warn').fadeIn();
-          setTimeout(function() { $('#al_warn').fadeOut(); }, 5000);
+          setTimeout(function() { $('#al_warn').fadeOut(); }, 10000);
         } else {
           var school = {};
           school.admin = localStorage.userid;
@@ -168,14 +217,45 @@
           school.rooms = $('#inp_nm_room').val();
           school.labs = $('#inp_nm_lab').val();
           school.gyms = $('#inp_nm_gym').val();
-          addSchool(school, function(data){
-            $('#save_ok').fadeIn();
-            localStorage.setItem("school", JSON.stringify(data));
-            setTimeout(function() { $('#save_ok').fadeOut(); }, 15000);
-          });
+          addSchool(school, schoolSaved);
         }
       });
     });
+
+    function userFound(){
+      loadUser(formatUserName);
+      var schoolid = getUrlParameter('schoolid');
+      if(schoolid == null){
+        update_mode = false;
+        $('#upd_and_delete').hide();
+        $('#save_only').fadeIn();
+      } else {
+        console.log('========> school id: ' + schoolid);
+        update_mode = true;
+        $('#save_only').hide();
+        $('#upd_and_delete').fadeIn();
+        loadSchool(schoolid, formatFields)
+      }
+    };
+    function firstTimeUser(){
+      window.location.href = 'code.html';
+    };
+    function formatUserName(user){
+      $('#username').html(user.name);
+      $('#userrole').html('profilo: ' + user.role);
+    };
+    function formatFields(school){
+      school_update = true;
+      $('#txt_school_name').val(school.name);
+      $('#inp_nm_room').val(school.rooms);
+      $('#inp_nm_lab').val(school.labs);
+      $('#inp_nm_gym').val(school.gyms);
+    };
+    function schoolSaved(school){
+      $('#save_ok').fadeIn();
+      localStorage.setItem("schoolid", data.id);
+      setTimeout(function() { $('#save_ok').fadeOut(); }, 15000);
+    };
 
   </script>
 

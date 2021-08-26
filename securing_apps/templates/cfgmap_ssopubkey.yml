@@ -1,0 +1,12 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+ name: access-public-key
+data:
+ PUBLIC_KEY: |
+   -----BEGIN PUBLIC KEY-----
+   # insert here the pubilc key extracted from keycloak client configuration
+   # you can use the following command:
+   # (requires JQ) > curl -s https://<keycloak_service_name>-<project_name>.apps.ocp4.rhocplab.com/auth/realms/master | jq -r .public_key
+   -----END PUBLIC KEY-----
