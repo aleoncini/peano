@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="la piattaforma web per creare gli orari scolastici">
+  <meta name="author" content="Andrea Leoncini">
+
+  <title>Orario</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <!-- Application CSS -->
+  <link href="/css/orario.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/secured/index.html">Lista Orari</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container head_base">
+    <div class="row">
+      <div class="col-lg-12">
+        <p class="page_title">Impostazioni Orario</p>
+        <hr style="height:1px; color: #b45f05;">
+        <div class="row">
+          <div class="col-8"><p class="block_title">Nome orario</p></div>
+          <div class="col-2"><img src="../images/pencil-square.svg" alt="edit" width="32" height="32"></div>
+          <div class="col-2">&nbsp;</div>
+        </div>
+        <div>
+          <p class="block_body font-weight-bold"><span id="tt_name"></span></p>          
+        </div>
+        <hr style="height:1px; color: #b45f05;">
+        <div class="row">
+          <div class="col-8"><p class="block_title">descrizione</p></div>
+          <div class="col-2"><img src="../images/pencil-square.svg" alt="edit" width="32" height="32"></div>
+          <div class="col-2">&nbsp;</div>
+        </div>
+        <div>
+          <p class="block_body font-weight-bold"><span id="tt_desc"></span></p>          
+        </div>
+        <hr style="height:1px; color: #b45f05;">
+        <div class="row">
+          <div class="col-8"><p class="block_title">scuola</p></div>
+          <div class="col-2"><img src="../images/pencil-square.svg" alt="edit" width="32" height="32"></div>
+          <div class="col-2">&nbsp;</div>
+        </div>
+        <div>
+          <p class="block_body font-weight-bold"><span id="tt_school"></span></p>          
+        </div>
+        <hr style="height:1px; color: #b45f05;">
+        <div class="row">
+          <div class="col-8"><p class="block_title">regole</p></div>
+          <div class="col-2"><img src="../images/pencil-square.svg" alt="edit" width="32" height="32"></div>
+          <div class="col-2">&nbsp;</div>
+        </div>
+        <div>
+          <p class="block_body font-weight-bold">fueiwhfiewuhfiwuhefpwihuefwhufpiweufh</p>          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Trip Modal -->
+  <div class="modal fade" id="newTimetableModal" tabindex="-1" aria-labelledby="tripModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Inizia a lavorare su un nuovo Orario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="inputTimetableName">Scegli un nome per l'orario</label>
+                  <input type="text" class="form-control" id="inputTimetableName" placeholder="Es.: Orario provvisorio anno..." required="required">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="saveTimetableButton">Salva</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- END -- New Trip Modal -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/bootstrap.bundle.js"></script>
+  <script src="../js/timetable.js"></script>
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+      loadTimetableInfo(displayTimetableInfo);
+    });
+
+  </script>
+
+</body>
+
+</html>

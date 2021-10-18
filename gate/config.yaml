@@ -1,5 +1,5 @@
 client-id: orario
-client-secret: d1277de8-b373-4a2c-b006-2d714500e1e3 # require for access_type: confidential
+client-secret: a6a1a667-b886-4fe2-81f1-5615ea227b56 # require for access_type: confidential
 discovery-url: https://access-sso.apps.ocp4.rhocplab.com/auth/realms/peano
 secure-cookie: false
 skip-openid-provider-tls-verify: true

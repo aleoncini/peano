@@ -9,8 +9,29 @@
     font-family: 'Titillium Web', sans-serif;
 }
 
+.page_title {
+    color: #b45f05;
+    text-align: left;
+    font-size: 2.2em;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.block_title {
+    font-size: 1.2em;
+    color: #102e3b;
+    text-align: left;
+    font-weight: bold;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.block_body {
+    font-size: 1.4em;
+    color: #102e3b;
+    text-align: left;
+}
+
 .t_table thead {
-    background-color: #b45f06;
+    background-color: #b45f05;
     color: whitesmoke;
     text-align: left;
     font-size: 0.8em;
@@ -37,7 +58,7 @@
 }
 
 .ttt {
-    border: 1px solid #b45f06;
+    border: 1px solid #b45f05;
     border-radius: 15px;
     background-color: rgb(219, 190, 163);
     padding: 5px;
@@ -51,7 +72,7 @@
     text-align: left;
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;
-    color: #b45f06;
+    color: #b45f05;
 }
 
 .page_bnr {

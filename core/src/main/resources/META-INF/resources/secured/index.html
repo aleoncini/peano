@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="la piattaforma web per creare gli orari scolastici">
+  <meta name="author" content="Andrea Leoncini">
+
+  <title>Orario Scolastico</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <!-- Application CSS -->
+  <link href="/css/orario.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container head_base">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p><img src="/images/orario.png"></p>
+        <p class="text_base">Di seguito l'elenco degli orari su cui hai lavorato. Puoi aggiungere un orario o impostare le variabili di uno già presente</p>
+        <br>
+
+        <div id="timetableListContainer" class="container text-left">
+            <table class="table table-condensed table-hover" id="tbl_timetable">
+                <thead>
+                    <tr><th style="text-align: left">Nome</th><th style="text-align: left">Descrizione</th><th>vedi</th><th>imposta</th><th>rimuovi</th></tr>
+                </thead>
+                <tbody id="tbl_body_timetable"></tbody>
+            </table>
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newTimetableModal">Crea Nuovo Orario</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Trip Modal -->
+  <div class="modal fade" id="newTimetableModal" tabindex="-1" aria-labelledby="tripModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Inizia a lavorare su un nuovo Orario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="inputTimetableName">Scegli un nome per l'orario</label>
+                  <input type="text" class="form-control" id="inputTimetableName" placeholder="Es.: Provvisorio 2020/21 ver. 1.0" required="required">
+                </div>
+                <div class="form-group">
+                  <label for="inputTimetableDescription">Descrizione</label>
+                  <input type="text" class="form-control" id="inputTimetableDescription" placeholder="Es.: Prima bozza orario provvisorio" required="required">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="saveTimetableButton">Salva</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- END -- New Trip Modal -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/bootstrap.bundle.js"></script>
+  <script src="../js/timetable.js"></script>
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+      
+      loadTimetables(displayTimetableList);
+
+        $('#saveTimetableButton').click(function(){
+            $('#newTimetableModal').modal('hide');
+            saveTimetable(addTimetableInfoToTable);
+        });
+
+        $(document).on("click", ".delete_timetable", function () {
+            deleteTimetable(this.dataset.id);
+            $(this).parent().remove();
+        });
+
+        $(document).on("click", ".setup_timetable", function () {
+          localStorage.setItem("timetable_id", this.dataset.id);
+          window.location = ('/secured/timetable.html'); 
+        });
+
+    });
+
+  </script>
+
+</body>
+
+</html>
